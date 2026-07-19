@@ -1,3 +1,4 @@
+from airqualityapi import AirQualityApi
 from geocodingapi import GeocodingApi
 from weatherapi import WeatherApi
 
@@ -12,7 +13,7 @@ class WeatherSystem:
             print("Please enter a city name.")
             return
 
-        lat, lon = GeocodingApi.get_coordinates(city_name)
+        lat,lon,city_name,country = GeocodingApi.get_coordinates(city_name)
 
         if lat is None or lon is None:
             return
@@ -31,7 +32,7 @@ class WeatherSystem:
         if not city_name:
             print("Please enter a city name.")
             return
-        lat, lon = GeocodingApi.get_coordinates(city_name)
+        lat, lon,city_name,country = GeocodingApi.get_coordinates(city_name)
         if lat is None or lon is None:
             return
         forecast_list = WeatherApi.get_forecast(lat, lon)
@@ -43,3 +44,18 @@ class WeatherSystem:
             print(f"Date: {weather.date}\n\n")
             print(weather)
             print("\n")
+
+    def display_air_quality(self):
+        city_name = input("Enter city name: ").strip()
+        if not city_name:
+            print("Please enter a city name.")
+            return
+        lat, lon,city_name,country = GeocodingApi.get_coordinates(city_name)
+        if lat is None or lon is None:
+            return
+        air_quality = AirQualityApi.get_air_quality(lat, lon, city_name, country)
+        if air_quality is None:
+            return
+        print("===== Air Quality =====")
+        print()
+        print(air_quality)

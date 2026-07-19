@@ -27,14 +27,16 @@ class GeocodingApi:
 
             if not coordinates:
                 print("City not found.")
-                return None, None
+                return None, None, None, None
 
             city = coordinates[0]
+            country=city["country"]
+            city_name = city["name"]
 
             lat = city["lat"]
             lon = city["lon"]
 
-            return lat, lon
+            return lat, lon,city_name,country
 
         except requests.exceptions.HTTPError:
             print("HTTP error.")
@@ -45,4 +47,4 @@ class GeocodingApi:
         except requests.exceptions.RequestException:
             print("Something went wrong.")
 
-        return None, None
+        return None, None, None, None

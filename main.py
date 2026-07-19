@@ -6,7 +6,12 @@ def show_menu():
 
 1. Current Weather
 2. 5-Day Forecast
-3. Exit""")
+3. Air Quality
+3. View Search History
+4. Save Favorite City
+5. View Favorite Cities
+6. Remove Favorite City
+7. Exit""")
 
 
 def main():
@@ -26,6 +31,8 @@ def main():
         elif user_choice == 2:
             system.display_forecast()
         elif user_choice == 3:
+            system.display_air_quality()
+        elif user_choice == 4:
             print("Exiting...")
             break
         else:
