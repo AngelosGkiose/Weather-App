@@ -23,7 +23,7 @@ def main():
         try:
             user_choice = int(input("Enter your choice: ").strip())
         except ValueError:
-            print("Please enter a number from 1 to 3.")
+            print("Please enter a number from 1 to 5.")
             continue
 
         if user_choice == 1:
@@ -33,10 +33,12 @@ def main():
         elif user_choice == 3:
             system.display_air_quality()
         elif user_choice == 4:
+            system.save_favourite_city()
+        elif user_choice == 5:
             print("Exiting...")
             break
         else:
-            print("Please enter a number from 1 to 3.")
+            print("Please enter a number from 1 to 5.")
 
 
 if __name__ == "__main__":

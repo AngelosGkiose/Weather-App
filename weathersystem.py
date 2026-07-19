@@ -1,10 +1,14 @@
+from database import Database
 from airqualityapi import AirQualityApi
+from favoritecity import FavoriteCity
 from geocodingapi import GeocodingApi
 from weatherapi import WeatherApi
 
 
 class WeatherSystem:
 
+    def __init__(self):
+        self.database=Database()
 
     def display_weather(self):
         city_name = input("Enter city name: ").strip()
@@ -59,3 +63,19 @@ class WeatherSystem:
         print("===== Air Quality =====")
         print()
         print(air_quality)
+
+    def save_favourite_city(self):
+        city_name = input("Enter city name: ").strip()
+        if not city_name:
+            print("Please enter a city name.")
+            return
+        lat, lon,city_name,country = GeocodingApi.get_coordinates(city_name)
+        if lat is None or lon is None:
+            return
+        favorite_city=FavoriteCity(city_name=city_name, country=country, latitude=lat, longitude=lon)
+        completed=self.database.add_favorite_city(favorite_city)
+        if completed:
+            print(f"{city_name},{country} was  added to your favorite cities.")
+        else:
+            print(f"{city_name},{country} is already in your favorite cities.")
+
