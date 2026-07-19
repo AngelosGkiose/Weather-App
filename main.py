@@ -9,7 +9,7 @@ def show_menu():
 3. Air Quality
 3. View Search History
 4. Save Favorite City
-5. View Favorite Cities
+5. View Weather Favorite Cities
 6. Remove Favorite City
 7. Exit""")
 
@@ -35,6 +35,8 @@ def main():
         elif user_choice == 4:
             system.save_favourite_city()
         elif user_choice == 5:
+            system.view_weather_fav_city()
+        elif user_choice == 6:
             print("Exiting...")
             break
         else:

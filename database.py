@@ -1,5 +1,7 @@
 import sqlite3
 
+from favoritecity import FavoriteCity
+
 
 class Database:
     def __init__(self):
@@ -44,3 +46,12 @@ class Database:
         except sqlite3.IntegrityError:
             self.connection.rollback()
             return False
+
+    def get_favorite_city(self):
+        self.cursor.execute("SELECT * FROM favorite_cities")
+        rows= self.cursor.fetchall()
+        favorite_city = []
+        for row in rows:
+            favorite_city.append(FavoriteCity(row[1], row[2], row[3], row[4],row[0]))
+        return favorite_city
+

@@ -79,3 +79,20 @@ class WeatherSystem:
         else:
             print(f"{city_name},{country} is already in your favorite cities.")
 
+    def view_weather_fav_city(self):
+        favoritecity=self.database.get_favorite_city()
+        if not favoritecity:
+            print("No favorite cities were found.")
+            return
+        for fav_city in favoritecity:
+            weather = WeatherApi.get_weather(favoritecity.latitude,favoritecity.longitude)
+            if weather is None:
+                print(
+                    f"Could not retrieve weather for "
+                    f"{fav_city.city_name}, {fav_city.country}."
+                )
+                print()
+                continue
+            print("===== Current Weather =====")
+            print()
+            print(weather)
