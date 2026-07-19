@@ -1,7 +1,11 @@
+from datetime import date
+
+
 from database import Database
 from airqualityapi import AirQualityApi
 from favoritecity import FavoriteCity
 from geocodingapi import GeocodingApi
+from searchhistory import SearchHistory
 from weatherapi import WeatherApi
 
 
@@ -26,9 +30,15 @@ class WeatherSystem:
 
         if weather is None:
             return
+        search_history=SearchHistory(city_name,country,date.today())
+        completed=self.database.add_search_history(search_history)
         print("===== Current Weather =====")
         print()
         print(weather)
+        if completed:
+            print(f"{city_name},{country} was added to your search history.")
+        else:
+            print("The search could not be saved.")
 
 
     def display_forecast(self):
@@ -108,6 +118,7 @@ class WeatherSystem:
             city_id=int(input("Enter city ID to remove: "))
             if city_id<=0 :
                 print("Please enter a valid city ID.")
+                return
         except ValueError:
             print("Please enter a numeric city ID.")
             return
@@ -117,10 +128,22 @@ class WeatherSystem:
             return
         completed=self.database.delete_favorite_city(city)
         if completed:
-            f"{city.city_name}, {city.country} was removed "
-            f"from your favorite cities."
+            print(
+                f"{city.city_name}, {city.country} was removed "
+                f"from your favorite cities."
+            )
         else:
             print("The favorite city could not be removed.")
+
+    def display_search_history(self):
+        search_history_list = self.database.get_search_history()
+        if not search_history_list :
+            print("No search history was found.")
+            return
+        for search_history in search_history_list :
+            print(search_history)
+            print("\n")
+
 
 
 

@@ -7,11 +7,11 @@ def show_menu():
 1. Current Weather
 2. 5-Day Forecast
 3. Air Quality
-3. View Search History
-4. Save Favorite City
-5. View Weather Favorite Cities
-6. Remove Favorite City
-7. Exit""")
+4. View Search History
+5. Save Favorite City
+6. View Weather Favorite Cities
+7. Remove Favorite City
+8. Exit""")
 
 
 def main():
@@ -23,7 +23,7 @@ def main():
         try:
             user_choice = int(input("Enter your choice: ").strip())
         except ValueError:
-            print("Please enter a number from 1 to 5.")
+            print("Please enter a number from 1 to 8.")
             continue
 
         if user_choice == 1:
@@ -33,16 +33,18 @@ def main():
         elif user_choice == 3:
             system.display_air_quality()
         elif user_choice == 4:
-            system.save_favourite_city()
+            system.display_search_history()
         elif user_choice == 5:
-            system.display_favorite_cities_weather()
+            system.save_favourite_city()
         elif user_choice == 6:
-            system.remove_fav_city()
+            system.display_favorite_cities_weather()
         elif user_choice == 7:
+            system.remove_fav_city()
+        elif user_choice == 8:
             print("Exiting...")
             break
         else:
-            print("Please enter a number from 1 to 5.")
+            print("Please enter a number from 1 to 8.")
 
 
 if __name__ == "__main__":
