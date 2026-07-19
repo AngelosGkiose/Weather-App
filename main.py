@@ -24,7 +24,7 @@ def main():
         if user_choice == 1:
             system.display_weather()
         elif user_choice == 2:
-            pass
+            system.display_forecast()
         elif user_choice == 3:
             print("Exiting...")
             break

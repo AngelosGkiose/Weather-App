@@ -9,7 +9,8 @@ class Weather:
         description,
         humidity,
         pressure,
-        wind_speed
+        wind_speed,
+        date=None
     ):
         self.city = city
         self.country = country
@@ -20,10 +21,10 @@ class Weather:
         self.humidity = humidity
         self.pressure = pressure
         self.wind_speed = wind_speed
-
+        self.date = date
+        
     def __str__(self):
         return (
-            "===== Current Weather =====\n\n"
             f"City         : {self.city}\n"
             f"Country      : {self.country}\n\n"
             f"Temperature  : {self.temperature:.1f} °C\n"
