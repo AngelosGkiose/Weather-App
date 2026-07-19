@@ -35,8 +35,10 @@ def main():
         elif user_choice == 4:
             system.save_favourite_city()
         elif user_choice == 5:
-            system.view_weather_fav_city()
+            system.display_favorite_cities_weather()
         elif user_choice == 6:
+            system.remove_fav_city()
+        elif user_choice == 7:
             print("Exiting...")
             break
         else:

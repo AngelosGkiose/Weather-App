@@ -21,6 +21,7 @@ class Database:
 )""")
         self.connection.commit()
 
+
     def add_favorite_city(self, favorite_city):
         try:
             self.cursor.execute(
@@ -55,3 +56,20 @@ class Database:
             favorite_city.append(FavoriteCity(row[1], row[2], row[3], row[4],row[0]))
         return favorite_city
 
+    def get_favorite_city_by_id(self, city_id):
+        self.cursor.execute("SELECT * FROM favorite_cities WHERE id = ?", (city_id,))
+        row=self.cursor.fetchone()
+        if row is None:
+            return None
+        return FavoriteCity(row[1], row[2], row[3], row[4], row[0])
+
+    def delete_favorite_city(self, city):
+        try:
+            self.cursor.execute("DELETE FROM favorite_cities "
+                                "WHERE city_name = ? and country=?",
+                                (city.city_name, city.country))
+            self.connection.commit()
+            return True
+        except sqlite3.IntegrityError:
+            self.connection.rollback()
+            return False

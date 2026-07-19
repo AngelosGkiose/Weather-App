@@ -79,13 +79,13 @@ class WeatherSystem:
         else:
             print(f"{city_name},{country} is already in your favorite cities.")
 
-    def view_weather_fav_city(self):
-        favoritecity=self.database.get_favorite_city()
-        if not favoritecity:
+    def display_favorite_cities_weather(self):
+        favorite_cities =self.database.get_favorite_city()
+        if not favorite_cities :
             print("No favorite cities were found.")
             return
-        for fav_city in favoritecity:
-            weather = WeatherApi.get_weather(favoritecity.latitude,favoritecity.longitude)
+        for fav_city in favorite_cities :
+            weather = WeatherApi.get_weather(fav_city.latitude,fav_city.longitude)
             if weather is None:
                 print(
                     f"Could not retrieve weather for "
@@ -96,3 +96,31 @@ class WeatherSystem:
             print("===== Current Weather =====")
             print()
             print(weather)
+
+    def remove_fav_city(self):
+        favorite_city = self.database.get_favorite_city()
+        if not favorite_city:
+            print("No favorite cities were found.")
+            return
+        for fav_city in favorite_city :
+            print(fav_city)
+        try:
+            city_id=int(input("Enter city ID to remove: "))
+            if city_id<=0 :
+                print("Please enter a valid city ID.")
+        except ValueError:
+            print("Please enter a numeric city ID.")
+            return
+        city=self.database.get_favorite_city_by_id(city_id)
+        if city is None:
+            print("No favorite cities with this id  were found.")
+            return
+        completed=self.database.delete_favorite_city(city)
+        if completed:
+            f"{city.city_name}, {city.country} was removed "
+            f"from your favorite cities."
+        else:
+            print("The favorite city could not be removed.")
+
+
+
