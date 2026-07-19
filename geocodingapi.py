@@ -20,15 +20,11 @@ class GeocodingApi:
                 params=params,
                 timeout=5
             )
-
             response.raise_for_status()
-
             coordinates = response.json()
-
             if not coordinates:
                 print("City not found.")
                 return None, None, None, None
-
             city = coordinates[0]
             country=city["country"]
             city_name = city["name"]
