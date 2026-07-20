@@ -1,101 +1,110 @@
-# Weather Application
+# Weather App
 
-A command-line Weather Application built with Python that uses the OpenWeather API to provide current weather, 5-day forecasts, and air quality information. The application also stores search history and favorite cities using SQLite.
+A command-line Weather Application built with Python that retrieves real-time weather, 5-day forecasts, and air quality information using the OpenWeather API.
 
 ## Features
 
-- Current Weather
-- 5-Day Weather Forecast
-- Air Quality Information
-- Search History
-- Save Favorite Cities
-- View Weather for Favorite Cities
-- Remove Favorite Cities
-- Input validation with cancel option
+- Current weather by city
+- 5-day weather forecast
+- Air quality information
+- Save favorite cities
+- View weather for favorite cities
+- Search history
+- SQLite database for data persistence
+- Input validation and error handling
+- Comprehensive unit tests with pytest
 
 ## Technologies
 
-- Python
+- Python 3
 - SQLite
 - Requests
 - OpenWeather API
+- Pytest
+- unittest.mock
 - python-dotenv
 
 ## Project Structure
 
 ```
-weather_app/
-│── main.py
-│── weathersystem.py
-│── weather.py
-│── weatherapi.py
-│── airquality.py
-│── airqualityapi.py
-│── favoritecity.py
-│── searchhistory.py
-│── geocodingapi.py
-│── database.py
-│── config.py
-│── .env
+Weather-App/
+│
+├── tests/
+├── airquality.py
+├── airqualityapi.py
+├── database.py
+├── favoritecity.py
+├── geocodingapi.py
+├── searchhistory.py
+├── weather.py
+├── weatherapi.py
+├── weathersystem.py
+├── main.py
+├── requirements.txt
+├── .env.example
+└── README.md
 ```
 
 ## Installation
 
-1. Clone the repository
+Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/weather-application.git
-cd weather-application
+git clone https://github.com/your-username/Weather-App.git
 ```
 
-2. Install the required package
+Install the dependencies:
 
 ```bash
-pip install requests python-dotenv
+pip install -r requirements.txt
 ```
 
-3. Create a `.env` file in the project root
+Create a `.env` file:
 
 ```env
-OPENWEATHER_API_KEY=your_api_key_here
+OPENWEATHER_API_KEY=your_api_key
 ```
 
-4. Run the application
+## Usage
+
+Run the application:
 
 ```bash
 python main.py
 ```
 
-## Menu
+## Running Tests
 
-```
-===== Weather Application =====
+Run all tests:
 
-1. Current Weather
-2. 5-Day Forecast
-3. Air Quality
-4. View Search History
-5. Save Favorite City
-6. View Weather Favorite Cities
-7. Remove Favorite City
-8. Exit
+```bash
+python -m pytest
 ```
 
-## What I Practiced
+Run tests with coverage:
+
+```bash
+python -m pytest --cov=. --cov-report=term-missing
+```
+
+## Test Coverage
+
+- 65 unit tests
+- 95% code coverage
+- API requests tested using mocks
+- SQLite tested using an in-memory database
+- Business logic fully tested
+
+## What I Learned
+
+During this project I practiced:
 
 - Object-Oriented Programming (OOP)
+- REST API integration
+- HTTP requests with Requests
 - SQLite database design
-- API integration with Requests
-- JSON data handling
-- Error handling and input validation
-- Code refactoring using helper methods
-- Clean project structure
-
-## Future Improvements
-
-- Weather icons
-- Search history filtering
-- Favorite city updates
-- Unit tests
-
+- Environment variables with dotenv
+- Unit testing with pytest
+- Mocking external APIs
+- Git and GitHub workflow
 
