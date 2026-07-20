@@ -5,8 +5,8 @@ from searchhistory import SearchHistory
 
 
 class Database:
-    def __init__(self):
-        self.connection = sqlite3.connect("favourite_city.db")
+    def __init__(self, database_name="favourite_city.db"):
+        self.connection = sqlite3.connect(database_name)
         self.cursor = self.connection.cursor()
         self.create_table()
         self.create_table_search_history()
@@ -136,3 +136,4 @@ class Database:
         for row in rows:
             search_history.append(SearchHistory(row[1], row[2], row[3],row[0]))
         return search_history
+
